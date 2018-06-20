@@ -1,0 +1,12 @@
+#regions_div{
+    height: 500px;
+    width:100%;
+    cursor: pointer;
+    /* border: 4px solid palevioletred; */
+  }
+
+  h2 {
+    font-style: italic;
+    font-weight: bold;
+    color: brown;
+  }

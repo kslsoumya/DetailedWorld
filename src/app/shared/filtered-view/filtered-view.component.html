@@ -1,0 +1,61 @@
+<div class="container" *ngIf="allCountries">
+    <div class="row" *ngIf="heading">
+      <div class="col">
+        <h3 *ngIf="isLang">Countries which speak
+          <strong>{{heading}}</strong>
+        </h3>
+        <h3 *ngIf="isCurr">Countries which buy with
+          <strong>{{heading}}</strong>
+        </h3>
+        <h3 *ngIf="isReg">Countries in
+          <strong>{{heading}}</strong>
+        </h3>
+  
+      </div>
+    </div>
+    <br/>
+    <div class = "row">
+      <div class="col-xs-4  mx-auto">
+        <div class="input-group">
+          <input type="text" class="form-control design" [(ngModel)]="searchTerm" placeholder="Search a country" aria-label="Search a country">
+        </div>
+      </div>
+    </div>
+    <br/>
+    <div class="row">
+      <div class="col-md-6 col-lg-4" *ngFor="let country of allCountries | searchFilter : searchTerm">
+  
+        <div class="card">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <img class="img-thumbnail mx-auto" src="{{country.flag}}" alt="Card image cap" style="width: 60vw;">
+            </li>
+            <li class="list-group-item">
+              <h4>{{country.name}}</h4>
+            </li>
+            <li class="list-group-item">
+              <strong>Capital : </strong>{{country.capital}}</li>
+            <li class="list-group-item">
+              <strong>Languages </strong>
+              <ul class="list-group">
+                <li class="list-group-item" >
+                <span *ngFor="let lan of country.languages | slice:0:3;let first=first;
+                let last=last;">  <a   routerLink="/country/lang_{{lan.iso639_1}}?lang={{lan.name}}" class="badge  badge-info p-2">
+                    {{lan.name}}</a> {{last?'':' '}}</span>
+                    
+                </li>
+              </ul>
+            </li>
+  
+            <li class="list-group-item" *ngIf="country.region">
+              <strong>Region : </strong>{{country.region}}</li>
+  
+            <li class="list-group-item">
+              <button routerLink='/detail/{{country.name}}' class="btn btn-outline-info">Details</button>
+            </li>
+          </ul>
+        </div>
+        <br/>
+        <br/>
+      </div>
+    </div>
