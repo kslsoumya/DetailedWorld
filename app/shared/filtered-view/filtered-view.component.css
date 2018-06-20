@@ -25,10 +25,9 @@ h3 {
 .design {
     border : 3px solid  blueviolet;
 }
-@media only screen and (max-width: 768px) { 
+@media only screen and (max-width: 505px) { 
     .card {
         height:32rem;
     }
-
 }
 
