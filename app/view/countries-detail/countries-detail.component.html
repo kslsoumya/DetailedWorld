@@ -1,0 +1,286 @@
+<div class="container" *ngIf="countryDetails">
+  <div class="row">
+    <div class="col">
+      <img src="{{countryDetails.flag}}" class="img-fluid">
+    </div>
+  </div>
+  <br/>
+  <div class="row">
+    <div class="col">
+      <h2> {{countryDetails.name}}</h2>
+    </div>
+  </div>
+  <br/>
+  <div class="row">
+    <div class="col">
+      <div class="accordion" id="countryDetail">
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+              <button class="btn alert alert-primary btn-lg btn-block" type="button" data-toggle="collapse" data-target="#basicSection"
+                aria-expanded="true" aria-controls="basicSection">
+                <strong> Basic</strong>
+              </button>
+            </h5>
+          </div>
+
+          <div id="basicSection" class="collapse" aria-labelledby="headingOne" data-parent="#countryDetail">
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <strong>Name : </strong> {{countryDetails.name}}</li>
+                <li class="list-group-item">
+                  <strong>Capital : </strong>{{countryDetails.capital}}</li>
+
+                <li class="list-group-item">
+                  <strong>Native Name : </strong>{{countryDetails.nativeName}}</li>
+                <li class="list-group-item">
+                  <strong>Alt Spellings : </strong>{{countryDetails.nativeName}}</li>
+                <li class="list-group-item">
+                  <strong>CIOC : </strong>{{countryDetails.cioc}}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingTwo">
+            <h5 class="mb-0">
+              <button class="btn alert alert-danger btn-lg btn-block" type="button" data-toggle="collapse" data-target="#regionSection"
+                aria-expanded="false" aria-controls="regionSection">
+                <strong>Region</strong>
+              </button>
+            </h5>
+          </div>
+          <div id="regionSection" class="collapse" aria-labelledby="headingTwo" data-parent="#countryDetail">
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <strong>Region : </strong>{{countryDetails.region}}</li>
+                <li class="list-group-item">
+                  <strong>Sub-Region :</strong>{{countryDetails.subregion}}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingTen">
+              <h5 class="mb-0">
+                <button class="btn alert alert-primary btn-lg btn-block" type="button" data-toggle="collapse" data-target="#langSec" aria-expanded="true"
+                  aria-controls="langSec">
+                  <strong>Languages</strong>
+                </button>
+              </h5>
+            </div>
+  
+            <div id="langSec" class="collapse" aria-labelledby="headingTen" data-parent="#countryDetail">
+              <div class="card-body">
+                <ul class="list-group" *ngFor ="let i of countryDetails.languages">
+                  <li class="list-group-item">
+                    <strong>iso639_1 : </strong>
+                    {{i.iso639_1}}</li>
+                  <li class="list-group-item">
+                    <strong>iso639_2 : </strong>
+                    {{i.iso639_2}}</li>
+                  <li class="list-group-item  ">
+                    <strong>Name : </strong>
+                    <a routerLink ="/country/lang_{{i.iso639_1}}?lang={{i.name}}"  class="badge  badge-info p-2"> {{i.name}}</a>
+                   </li>
+                  <li class="list-group-item">
+                    <strong>NativeName : </strong>
+                    {{i.nativeName}}</li>
+                    <br/>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+              <div class="card-header" id="headingEleven">
+                <h5 class="mb-0">
+                  <button class="btn alert alert-danger btn-lg btn-block" type="button" data-toggle="collapse" data-target="#currSec" aria-expanded="true"
+                    aria-controls="currSec">
+                    <strong>Currencies</strong>
+                  </button>
+                </h5>
+              </div>
+    
+              <div id="currSec" class="collapse" aria-labelledby="headingEleven" data-parent="#countryDetail">
+                <div class="card-body">
+                  <ul class="list-group" *ngFor ="let i of countryDetails.currencies">
+                    <li class="list-group-item">
+                      <strong>Code  : </strong>
+                      {{i.code}}</li>
+                    <li class="list-group-item  ">
+                      <strong>Name : </strong>
+                      <a routerLink ="/country/cur_{{i.code}}?cur={{i.name}}" class="badge  badge-info p-2"> {{i.name}}</a>
+                     </li>
+                    <li class="list-group-item">
+                      <strong>Symbol : </strong>
+                      {{i.symbol}}</li>
+                      <br/>
+                  </ul>
+                </div>
+              </div>
+            </div>
+        <div class="card">
+          <div class="card-header" id="headingThree">
+            <h5 class="mb-0">
+              <button class="btn  alert alert-primary btn-lg btn-block" type="button" data-toggle="collapse" data-target="#locationSection"
+                aria-expanded="false" aria-controls="locationSection">
+                <strong>Location</strong>
+              </button>
+            </h5>
+          </div>
+          <div id="locationSection" class="collapse" aria-labelledby="headingThree" data-parent="#countryDetail">
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <strong>Latitude : </strong>{{countryDetails.latlng[0]}}</li>
+                <li class="list-group-item">
+                  <strong>Longitude: </strong>{{countryDetails.latlng[1]}}</li>
+              </ul>
+
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingFour">
+            <h5 class="mb-0">
+              <button class="btn alert alert-danger btn-lg btn-block" type="button" data-toggle="collapse" data-target="#statsSection"
+                aria-expanded="false" aria-controls="statsSection">
+                <strong>Stats</strong>
+              </button>
+            </h5>
+          </div>
+          <div id="statsSection" class="collapse" aria-labelledby="headingFour" data-parent="#countryDetail">
+            <div class="card-body">
+              <ul class="list-group">
+
+                <li class="list-group-item">
+                  <strong>Population : </strong>{{countryDetails.population}}</li>
+                <li class="list-group-item">
+                  <strong>Area: </strong>{{countryDetails.area}}</li>
+              </ul>
+
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingFive">
+            <h5 class="mb-0">
+              <button class="btn  alert alert-primary btn-lg btn-block" type="button" data-toggle="collapse" data-target="#timeZoneSec"
+                aria-expanded="false" aria-controls="timeZoneSec">
+               <strong> TimeZones</strong>
+              </button>
+            </h5>
+          </div>
+          <div id="timeZoneSec" class="collapse" aria-labelledby="headingFive" data-parent="#countryDetail">
+            <div class="card-body">
+              <ul class="list-group" *ngFor="let i of countryDetails.timezones">
+                <li class="list-group-item">{{i}}</li>
+              </ul>
+
+
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingSix">
+            <h5 class="mb-0">
+              <button class="btn alert alert-danger btn-lg btn-block" type="button" data-toggle="collapse" data-target="#transSec"
+                aria-expanded="false" aria-controls="transSec">
+                <strong>Translations</strong>
+              </button>
+            </h5>
+          </div>
+          <div id="transSec" class="collapse" aria-labelledby="headingSix" data-parent="#countryDetail">
+            <div class="card-body">
+
+              <ul class="list-group">
+                <li class="list-group-item" *ngFor="let i of translationKeys">
+                <strong>{{i}} : </strong>{{countryDetails.translations[i]}}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingSeven">
+            <h5 class="mb-0">
+              <button class="btn  alert alert-primary btn-lg btn-block" type="button" data-toggle="collapse" data-target="#codeSec" aria-expanded="false"
+                aria-controls="codeSec">
+                <strong>Codes</strong>
+              </button>
+            </h5>
+          </div>
+          <div id="codeSec" class="collapse" aria-labelledby="headingSeven" data-parent="#countryDetail">
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <strong>alpha2Code : </strong>
+                  {{countryDetails.alpha2Code}}</li>
+                <li class="list-group-item">
+                  <strong>alpha3Code : </strong>
+                  {{countryDetails.alpha3Code}}</li>
+                <li class="list-group-item">
+                  <strong>CallingCodes : </strong>
+                  {{countryDetails.callingCodes[0]}}</li>
+                <li class="list-group-item">
+                  <strong>NumericCode : </strong>
+                  {{countryDetails.numericCode}}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="card" *ngIf = "countryDetails.borders.length!==0" >
+          <div class="card-header" id="headingEight">
+            <h5 class="mb-0">
+              <button class="btn alert alert-danger btn-lg btn-block" type="button" data-toggle="collapse" data-target="#bordersSec"
+                aria-expanded="true" aria-controls="bordersSec">
+                <strong>Borders</strong>
+              </button>
+            </h5>
+          </div>
+
+          <div id="bordersSec" class="collapse" aria-labelledby="headingEight" data-parent="#countryDetail">
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item" *ngFor="let i of countryDetails.borders">
+                  {{i}}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="card" *ngIf="countryDetails.regionalBlocs.length>0">
+          <div class="card-header" id="headingNine">
+            <h5 class="mb-0">
+              <button class="btn alert alert-primary btn-lg btn-block" type="button" data-toggle="collapse" data-target="#blocsSec" aria-expanded="true"
+                aria-controls="blocsSec">
+                <strong>RegionalBlocs</strong>
+              </button>
+            </h5>
+          </div>
+
+          <div id="blocsSec" class="collapse" aria-labelledby="headingNine" data-parent="#countryDetail">
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <strong>Acronym : </strong>
+                  {{countryDetails.regionalBlocs[0].acronym}}</li>
+                <li class="list-group-item">
+                  <strong>Name : </strong>
+                  {{countryDetails.regionalBlocs[0].name}}</li>
+                <li class="list-group-item" *ngFor="let i of countryDetails.regionalBlocs[0].otherAcronyms">
+                  <strong>Other Acronyms : </strong>
+                  {{i}}</li>
+                  <li class="list-group-item" *ngIf = "countryDetails.regionalBlocs[0].otherNames.length>0">
+                      <strong>Other Names : </strong>
+                      <span *ngFor = "let i of countryDetails.regionalBlocs[0].otherNames;let first=first;
+          let last=last">{{i}}{{last ? '' :' | '}}</span>
+                    </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+       
+      </div>
+    </div>
+  </div>
